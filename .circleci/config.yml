@@ -1,0 +1,59 @@
+
+version: 2.1
+jobs:
+  build:  # https://circleci.com/docs/2.0/workflows/
+    docker:
+      - image: circleci/python:3.7
+    steps:
+      - checkout
+      - restore_cache:
+          key: v1-{{ .Branch }}-{{ checksum "requirements.txt" }}
+      - run:
+          name: PIP INSTALL  # If the name omitted, then use the command instead of it.
+          command: |
+            python3 -m venv my_env
+            . my_env/bin/activate
+            pip install --upgrade pip
+            pip install -r requirements.txt
+            python setup.py test
+            pip install .
+      - save_cache:
+          name: "SAVE CACHE: requirements.txt"
+          key: v1-{{ .Branch }}-{{ checksum "requirements.txt" }}
+          paths:
+            - "my_env"
+  test:
+    docker:
+      - image: circleci/python:3.7
+    steps:
+      - checkout
+      - restore_cache:
+          name: "RESTORE CACHE: requirements.txt"
+          key: v1-{{ .Branch }}-{{ checksum "requirements.txt" }}
+      - run:
+          name: Running tests
+          command: |
+            . my_env/bin/activate
+            ydl_cli.exe --version
+            ydl_cli.exe --help
+            ydl_cli.exe batch_run -h
+      - store_artifacts:
+          path: test-reports/
+          destination: python_app
+
+workflows:
+  version: 2
+  wkf_name_main:
+    # triggers:
+    jobs:
+      - build:
+          filters:
+            branches:
+              only: Release
+
+      - test:  # second job name
+          requires:
+            - build  # waiting for `pip install` is ready.
+          filters:
+            branches:
+              only: Release
