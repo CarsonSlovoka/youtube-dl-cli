@@ -13,4 +13,7 @@ indent_style = space
 [*.{puml,nsi,nsh}]
 indent_style=tab
 
+[*.yaml]
+indent_size = 2
+
 # [*.other]
