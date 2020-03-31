@@ -1,3 +1,5 @@
+__all__ = ('CLITests',)
+
 import sys
 from pathlib import Path
 
