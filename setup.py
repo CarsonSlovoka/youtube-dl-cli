@@ -13,10 +13,10 @@ if 'eny path':
 
 VERSION_NUMBER = __version__
 DOWNLOAD_VERSION = __version__
-SETUP_NAME = youtube_dl_cli.__name__
+PACKAGES_DIR = youtube_dl_cli.__name__
+SETUP_NAME = PACKAGES_DIR.replace('_', '-')
 ALIAS_NAME = __exe_name__
 GITHUB_URL = f'https://github.com/CarsonSlovoka/{SETUP_NAME}/tree/master'
-PACKAGES_DIR = SETUP_NAME
 
 # find_package_modules = setuptools.command.build_py.build_py.find_package_modules
 
@@ -43,7 +43,7 @@ def test_setup():
 
 setup(
     name=SETUP_NAME,
-    version=VERSION_NUMBER,  # x.x.x.{dev, a, b, rc}
+    version=f'{VERSION_NUMBER}',  # x.x.x.{dev, a, b, rc}
 
     packages=find_packages(exclude=['youtube_dl_cli.test.*']),  # ignore modules
 
@@ -67,9 +67,9 @@ setup(
     zip_safe=False,
     classifiers=[  # https://pypi.org/classifiers/
         'Topic :: Multimedia :: Video',
-        'Topic :: Multimedia :: Video :: Capture'
+        'Topic :: Multimedia :: Video :: Capture',
         'Topic :: Multimedia :: Sound/Audio :: Players',
-        'Topic :: Multimedia :: Sound/Audio :: Players :: MP3'
+        'Topic :: Multimedia :: Sound/Audio :: Players :: MP3',
         'Natural Language :: Chinese (Traditional)',
         'Natural Language :: English',
         'Operating System :: Microsoft',

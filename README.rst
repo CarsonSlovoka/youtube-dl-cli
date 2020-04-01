@@ -45,19 +45,19 @@
 
     </p>
 
-=================
+===================================================
 youtube-dl-cli
-=================
+===================================================
 
 **A tool that can download the video from youtube and easier to use.**
 
 INSTALL
-=================
+==================================
 
 pip install youtube-dl-cli
 
 USAGE
-=================
+==================================
 
 
 ::
@@ -86,19 +86,20 @@ USAGE
 - full command: ``ydl_cli batch_run "url_1" "url_2" --output_dir="C:/Users/Carson/Downloads" --format m4a mp4_144p --quiet  --write_thumbnail``
 - voice only  : ``ydl_cli batch_run "url_1" -f m4a``
 
+RELEASE NOTE
+==================================
+
 0.1.1
 -----------------
 
 - publish to PyPI
+
 
 0.1.0
 -----------------
 
 - create setup.
 - .circleci/config.yml
-
-RELEASE NOTE
-=================
 
 
 0.0.1
