@@ -12,7 +12,10 @@ from typing import List, Tuple, Sequence, Iterable
 from tkinter.messagebox import askokcancel
 from tkinter import Tk
 if 'withdraw tk':
-    Tk().withdraw()
+    try:
+        Tk().withdraw()
+    except:
+        ...
 
 
 class YoutubeKeeper:
