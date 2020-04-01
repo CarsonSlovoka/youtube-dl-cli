@@ -7,12 +7,8 @@ import sys
 import unittest
 
 if 'eny path':
-    sys.path.insert(0, str(Path(__file__).parent))
     import youtube_dl_cli
     from youtube_dl_cli import __version__, __exe_name__, __author__, __description__
-    from youtube_dl_cli.test.test_cli import CLITests
-
-    sys.path.remove(sys.path[0])
 
 
 VERSION_NUMBER = __version__
@@ -25,14 +21,15 @@ PACKAGES_DIR = SETUP_NAME
 # find_package_modules = setuptools.command.build_py.build_py.find_package_modules
 
 
-with open('README.rst', encoding='utf-8') as f:
+with open(Path(__file__).parent / Path('README.rst'), encoding='utf-8') as f:
     LONG_DESCRIPTION = f.read()
 
-with open('requirements.txt') as req_txt:
+with open(Path(__file__).parent / Path('requirements.txt')) as req_txt:
     LIST_REQUIRES = [line.strip() for line in req_txt if not line.startswith('#') and line.strip() != '']
 
 
 def test_setup():
+    from youtube_dl_cli.test.test_cli import CLITests
     suite_list = [unittest.TestLoader().loadTestsFromTestCase(class_module) for class_module in (CLITests, )]
     suite_class_set = unittest.TestSuite(suite_list)
 
