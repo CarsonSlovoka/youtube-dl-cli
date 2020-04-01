@@ -7,7 +7,11 @@ youtube-dl-cli
 USAGE
 =================
 
+0.1.0
+-----------------
 
+- create setup.py
+- .circleci/config.yml
 
 RELEASE NOTE
 =================
