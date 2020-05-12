@@ -82,6 +82,7 @@ setup(
     entry_points={
         'console_scripts': [
             f'{ALIAS_NAME}=youtube_dl_cli.cli:main',
+            'ydl_cmd=youtube_dl_cli.cli:main',
         ],
     },
     test_suite='setup.test_setup',  # `python setup.py test` will call this function. # return value must is `suite`

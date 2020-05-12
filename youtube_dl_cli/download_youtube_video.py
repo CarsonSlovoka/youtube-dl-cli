@@ -3,6 +3,7 @@ __all__ = ('YoutubeKeeper', 'YLFormat')
 import youtube_dl
 
 import os
+from sys import stderr
 from pathlib import Path
 
 from .structured import YLFormat
@@ -30,12 +31,13 @@ class YoutubeKeeper:
     def start(download_list: Iterable[Tuple[str, Sequence[YLFormat]]],
               output_dir: Path = None,
               **options):
-        if output_dir and not output_dir.exists():
-            print(f'output_dir not exists: {output_dir}')
-            return
-        else:
+
+        if output_dir is None:
             output_dir = Path(os.environ["USERPROFILE"]) / Path('Music/my_music')
             output_dir.mkdir(exist_ok=True)
+        elif not output_dir.exists():
+            print(f'output_dir not exists: {output_dir}')
+            return
 
         for cur_data in download_list:
             if not isinstance(cur_data, (tuple, list)) and len(cur_data) < 2:
@@ -55,7 +57,7 @@ class YoutubeKeeper:
                                                          quiet=options.get('quiet')
                                                          ))
                 except youtube_dl.utils.DownloadError:
-                    print(f'download error: {cur_url} | {fmt_name}')
+                    stderr.write(f'download error: {cur_url} | {fmt_name}')
 
         if askokcancel('All done!', 'Open the music folder?'):
             os.startfile(output_dir)

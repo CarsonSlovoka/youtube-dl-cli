@@ -90,6 +90,13 @@ USAGE
 RELEASE NOTE
 ==================================
 
+0.1.2
+-----------------
+
+- Add ydl_cmd: You can launch the scripts by the command ``ydl_cli`` and ``ydl_cmd``.
+- bug-fixes: The output_dir does not work.
+
+
 0.1.1
 -----------------
 
