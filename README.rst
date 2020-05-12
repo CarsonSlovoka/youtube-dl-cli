@@ -89,6 +89,11 @@ USAGE
 RELEASE NOTE
 ==================================
 
+0.1.2
+-----------------
+
+bug-fixes: The output_dir does not working.
+
 0.1.1
 -----------------
 
